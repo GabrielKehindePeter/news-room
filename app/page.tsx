@@ -3,6 +3,7 @@ import Preheader from "./Components/Preheader";
 import Navbar from "./Components/Navbar";
 import SliderDemo from "./Components/Swiper"
 import BlogFront from "./Components/BlogFront";
+import TopNews from "./Components/TopNews";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
     <Navbar />
     <SliderDemo/>
     <BlogFront />
+    <TopNews />
   </>
   );
 }

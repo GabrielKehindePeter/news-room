@@ -102,3 +102,11 @@ body {
                      transform: translateX(-100%);
                    }
                  }
+
+                #slidepost {
+                  background-image: url('/imgs/bg/bg-3.jpg');
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position: center;
+                }
+
