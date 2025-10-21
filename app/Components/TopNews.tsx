@@ -23,7 +23,8 @@ const TopNews = () => {
   ];
 
   return (
-    <div className="relative bg-blue-800 pb-4 text-white h-80 rounded-b-full" id="slidepost">
+    <div className="relative bg-blue-800 p-4 text-white h-90 rounded-b-full" id="slidepost">
+        <br />
       <div className="flex items-center justify-between mb-4 px-4 pt-4">
         <h2 className="text-xl font-semibold">Good New Report</h2>
 

@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 import SliderDemo from "./Components/Swiper"
 import BlogFront from "./Components/BlogFront";
 import TopNews from "./Components/TopNews";
+import Advert from "./Components/Advert";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
     <SliderDemo/>
     <BlogFront />
     <TopNews />
+    <Advert />
   </>
   );
 }
