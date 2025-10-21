@@ -21,9 +21,15 @@
 }
 
 body {
-  background: var(--background);
+  /* background: var(--background); */
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+
+
+      background-image: url('/imgs/bg/bg-4.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
 }
 
 
@@ -64,7 +70,7 @@ body {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  padding: 12px 16px;
+  padding: 6px 8px;
   font-size: 18px;
   border-radius: 50%;
   border: none;
@@ -104,7 +110,7 @@ body {
                  }
 
                 #slidepost {
-                  background-image: url('/imgs/bg/bg-3.jpg');
+                  background-image: url('/imgs/bg/bl-2.jpg');
                   background-repeat: no-repeat;
                   background-size: cover;
                   background-position: center;

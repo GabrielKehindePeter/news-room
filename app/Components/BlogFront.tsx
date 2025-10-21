@@ -45,7 +45,7 @@ const BlogFront = () => {
                     
                     <div className='grid sm:grid-cols-1 lg:grid-cols-2 text-gray-800'>
 
-                        <div className='p-2'>
+                        <div className='p-2 object-cover transform transition-transform duration-500 ease-in-out hover:scale-110'>
                         <img src="./imgs/arise.jpg" className='rounded-xl' />
                         </div>
                          <div className='p-2 text-sm'>
@@ -66,7 +66,7 @@ const BlogFront = () => {
                         Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
                         Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
                        </div>
-                        <div className='p-2 text-sm'>
+                        <div className='p-2 text-sm '>
                         <img src="./imgs/naijah-men.jpg" className='rounded-xl' />
                         </div>
                          <div className='p-2 text-sm'>

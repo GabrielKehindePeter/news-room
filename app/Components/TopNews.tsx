@@ -69,19 +69,19 @@ const TopNews = () => {
           {sliders.map((slider) => (
  <SwiperSlide
               key={slider.id}
-              className="p-2 rounded-lg text-gray-700"
+              className="p-2 rounded-lg text-blue-500"
             >
               <Link href="#">
-                <div>
-                    <div className=" bg-white pb-8 h-90 text-center rounded-t-2xl">
-                    <img src={slider.img} className="rounded-t-2xl" />
+                <div className=" object-cover transform transition-transform duration-500 ease-in-out hover:scale-110">
+                    <div className=" bg-gray-100 pb-8 h-90 text-center rounded-t-2xl ">
+                    <img src={slider.img} className="rounded-t-2xl w-full h-40" />
                 <div className="p-2">
                   <h3 className="font-semibold mb-1">{slider.title}</h3>
                  
                   {/* <p className="text-sm">{slider.desc}</p> */}
                   <p className=" text-sm">Posted on 21/10/2025</p>
                  <div className="mt-4">
-                  <button className="btn btn-primary rounded-2xl btn-sm hover:bg-black">Read More</button>
+                  <button className="btn bg-blue-900 rounded-2xl btn-sm hover:bg-black">Read More</button>
                   </div>
                   </div>
                   </div>
