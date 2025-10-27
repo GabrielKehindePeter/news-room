@@ -22,7 +22,7 @@ const AllCategories = () => {
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center">
         {posts.map((post) => (
           <Link href="#" key={post.id}>
-            <div className="group m-2 bg-gray-50 overflow-hidden rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-blue-50">
+            <div className="group m-2 bg-white overflow-hidden rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-blue-50">
               <img
                 src={post.img}
                 alt={post.title}
