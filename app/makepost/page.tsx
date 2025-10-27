@@ -1,7 +1,7 @@
 // app/makepost/page.tsx
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { supabase } from "@/app/supabaseClient";
 import { useRouter } from "next/navigation";
 
@@ -13,6 +13,7 @@ export default function MakePostPageClient() {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+  const [category, setCategory] = useState("");
 
   const [user, setUser] = useState<any | null>(null);
   const [checkingAuth, setCheckingAuth] = useState(true);
@@ -158,6 +159,7 @@ async function handleSubmit(e: React.FormEvent) {
     const payload = {
       title,
       content,
+      category,
       image_url,
       image_path,
       author_id: authorId,
@@ -208,7 +210,7 @@ async function handleSubmit(e: React.FormEvent) {
   if (checkingAuth) return <div className="p-4">Checking authentication...</div>;
 
   return (
-    <div className="max-w-xl mx-auto p-4 text-black">
+    <div className="max-w-xl mx-auto p-4 text-black pt-10 pb-10">
       <h2 className="text-2xl mb-4">Create Blog Post</h2>
 
       {!user && (
@@ -218,6 +220,15 @@ async function handleSubmit(e: React.FormEvent) {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-3">
+        <div>
+          <label className="block">Category</label>
+          <select value={category} onChange={(e) => setCategory(e.target.value)} className="border-2 w-full border p-2 rounded">
+            <option value=''></option>
+            <option value='Politics'>Politics</option>
+            <option value='Entertainment'>Entertainment</option>
+            <option value='Business'>Business</option>
+          </select>
+        </div>
         <div>
           <label className="block">Title</label>
           <input value={title} onChange={(e) => setTitle(e.target.value)} className="border-2 w-full border p-2 rounded" placeholder="Your post title" />
@@ -230,7 +241,7 @@ async function handleSubmit(e: React.FormEvent) {
 
         <div>
           <label className="block">Image (optional)</label>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
+          <input type="file" accept="image/*" onChange={handleFileChange} className="border-1 border-black p-2 rounded-sm w-full"/>
           {file && <p className="text-sm mt-1">Selected: {file.name}</p>}
         </div>
 
@@ -244,7 +255,7 @@ async function handleSubmit(e: React.FormEvent) {
           </button>
         </div>
 
-        {message && <p className="mt-2">{message}</p>}
+        {message && <p className="mt-2 border-l-4 p-3 border-blue-600 bg-blue-200 text-blue-600">{message}</p>}
       </form>
     </div>
   );

@@ -1,7 +1,21 @@
 import React from 'react'
-import adImg from "./imgs/mt-5.jpg";
 
-const BlogFront = () => {
+import { supabase } from "@/app/supabaseClient";
+
+const BlogFront = async() => {
+
+
+    const { data, error } = await supabase
+                .from('blog')
+                .select()
+                .order('id', { ascending: false })
+                .range(0, 10)
+
+                if(error){
+                    console.log('an error occured: '+ error);
+                }else{
+                    console.log(data)
+                }
   return (
     <>
         <div className='bg-gray-200 pt-15 text-blue-700'>
@@ -43,50 +57,27 @@ const BlogFront = () => {
                     <div className="divider divider-start divider-info pt-10">Trending News</div>
                     </div>
                     
-                    <div className='grid sm:grid-cols-1 lg:grid-cols-2 text-gray-800'>
+                    <div className='grid sm:grid-cols-1 lg:grid-cols-2 text-gray-800 '>
 
-                        <div className='p-2 object-cover transform transition-transform duration-500 ease-in-out hover:scale-110'>
-                        <img src="./imgs/arise.jpg" className='rounded-xl' />
-                        </div>
-                         <div className='p-2 text-sm'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
+                       {data.map((post)=>(
+
+
+                    <div className='object-cover transform transition-transform duration-500 ease-in-out hover:scale-95  bg-blue-50 rounded-xl m-1 mb-4'  key={post.id}>
+                
+                        <img src={post.image_url} className='rounded-xl' />
+                       
+                         <div className='p-3 font-bold text-blue-500'>
+                        {post.title}
                        </div>
-                        <div className='p-2'>
-                        <img src="./imgs/bola-amed.jpg" className='rounded-xl' />
-                        </div>
-                         <div className='p-2 text-sm'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                       </div>
-                        <div className='p-2'>
-                        <img src="./imgs/asuu.jpg" className='rounded-xl' />
-                        </div>
-                         <div className='p-2 text-sm'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                       </div>
-                        <div className='p-2 text-sm '>
-                        <img src="./imgs/naijah-men.jpg" className='rounded-xl' />
-                        </div>
-                         <div className='p-2 text-sm'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                       </div>
-                        <div className='p-2 text-sm'>
-                        <img src="./imgs/naija.jpg" className='rounded-xl' />
-                        </div>
-                         <div className='p-2 text-sm'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                       </div>
-                        <div className='p-2 text-sm'>
-                        <img src="./imgs/naija.jpg" className='rounded-xl' />
-                        </div>
-                         <div className='p-2 text-sm'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit jdj!
-                       </div>
+                    </div>
+
+                       ))}
+                       
+                       
+                      
+                        
+
+
 
                     </div>
                    

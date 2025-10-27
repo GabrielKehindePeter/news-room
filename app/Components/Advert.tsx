@@ -18,15 +18,15 @@ const Advert = () => {
     <div className='mt-30'>
 
 <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 p-4'>
-    <div className='col-span-2 p-2 mt-10'>
-  <div className="flex w-full flex-col text-bl">
-    <div className="divider divider-start divider-primary pt-10 text-2xl text-primary">Trending</div>
-</div>
+    <div className='col-span-2 p-1 mt-10'>
+      <div className="flex w-full flex-col text-bl">
+        <div className="divider divider-start divider-primary pt-10 text-2xl text-primary">Trending</div>
+    </div>
 
 
 {/* posts */}
 
-   <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 text-center p-2">
+   <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 text-center p-1">
       {posts.map((post) => (
         <div
           key={post.id}
