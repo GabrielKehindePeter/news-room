@@ -6,10 +6,10 @@ import { Facebook, Instagram , Twitter  } from 'lucide-react';
 const Preheader = () => {
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-6 gap-2 p-2 border-b-2 bg-black border-blue-600 items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-6 gap-2 p-2 border-b-2 bg-blue-900 border-blue-100 items-center">
         {/* Title - full width on mobile, left on larger screens */}
         <div className="w-full sm:col-span-1 flex justify-center sm:justify-start">
-          <h2 className="text-base sm:text-xl font-bold text-blue-600 text-center sm:text-left">
+          <h2 className="text-base sm:text-xl font-bold text-blue-200 text-center sm:text-left">
             News Head Lines
           </h2>
         </div>

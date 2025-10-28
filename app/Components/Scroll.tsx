@@ -12,7 +12,7 @@ export default function MarqueeText() {
     <div className="marquee">
       <div className="marquee-content">
         {messages.map((msg, i) => (
-          <span key={i} className="mx-8 text-white text-sm">
+          <span key={i} className="mx-8 text-gray-300 text-sm">
             {msg}
            
           </span>

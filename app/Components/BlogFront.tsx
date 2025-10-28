@@ -9,12 +9,10 @@ const BlogFront = async() => {
                 .from('blog')
                 .select()
                 .order('id', { ascending: false })
-                .range(0, 10)
+                .range(0, 3)
 
                 if(error){
                     console.log('an error occured: '+ error);
-                }else{
-                    console.log(data)
                 }
   return (
     <>
@@ -57,7 +55,7 @@ const BlogFront = async() => {
                     <div className="divider divider-start divider-info pt-10">Trending News</div>
                     </div>
                     
-                    <div className='grid sm:grid-cols-1 lg:grid-cols-2 text-gray-800 '>
+                    <div className='grid sm:grid-cols-1 lg:grid-cols-1 text-gray-800 '>
 
                        {data.map((post)=>(
 
