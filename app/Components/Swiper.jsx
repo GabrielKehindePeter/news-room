@@ -48,7 +48,7 @@ const SliderDemo = () => {
   ]
 
   return (
-    <div className="relative bg-blue-800 pb-4">
+    <div className="relative bg-blue-800 pb-4 sm:mt-43 lg:mt-27">
       <div className="flex items-center justify-between mb-4 px-4">
         <h2 className="text-xl font-semibold pt-4">Featured Categories</h2>
       </div>

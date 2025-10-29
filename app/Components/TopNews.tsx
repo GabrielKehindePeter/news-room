@@ -99,7 +99,7 @@ const TopNews = () => {
                     <div className="bg-white pb-8 h-90 text-center rounded-t-2xl">
                       <img src={slider.image_url} alt={slider.title} className="rounded-t-2xl w-full h-40 object-cover" />
                       <div className="p-2">
-                        <h3 className="font-semibold mb-1">{slider.title}</h3>
+                        <h3 className="font-semibold mb-1 text-lg font-bold">{slider.title}</h3>
                         <p className="text-sm">Posted on {slider.created_at}</p>
                         <div className="mt-4">
                           <button className="btn bg-blue-900 rounded-2xl btn-sm hover:bg-black">Read More</button>

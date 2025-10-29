@@ -13,8 +13,10 @@ import Prefooter from "./Components/Prefooter";
 export default function Home() {
   return (
   <>
+   <div className="fixed top-0 left-0 w-full z-50">
     <Preheader/>
     <Navbar />
+    </div>
     <SliderDemo/>
     <BlogFront />
     <TopNews />
