@@ -21,7 +21,7 @@ const BlogFront = async() => {
                 <div className='sm:col-span-1 lg:col-span-2 p-6 pt-2'>
                   <div>
                      <img src="./imgs/sen.jpg" className='rounded-xl' />
-                    <h2 className='text-5xl text-gray-800 pt-4 pb-4'>Nigeria state approves professor Joash Asumpita as new Nigeria INEC chairman</h2>
+                    <h2 className='text-5xl text-gray-800 pt-4 pb-4'>Nigeria senate approves professor Joash Asumpita as new Nigeria INEC chairman</h2>
                     <hr className='border-2'/><br />
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati explicabo exercitationem reprehenderit? Nesciunt iste mollitia aliquam sapiente distinctio voluptatibus rerum debitis fuga eos sunt dolorem, accusantium atque! Quas, molestiae tempore?
                 </div>

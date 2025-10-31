@@ -1,19 +1,14 @@
+"use client"
 import React from 'react'
 import Link from 'next/link';
+import { fetchPosts } from "./Allposts";
+import { useState } from 'react';
 
-  const posts = [
-    { id: 1, title: "ASSU set to allow some selected UNiversity to complete their Exams.", desc: "This is the description for this category", img: "./imgs/asuu.jpg" },
-    { id: 2, title: "Nigeria bar association join Showole on the release namdi Kano protest", desc: "This is the description for this category", img: "./imgs/naijah-men.jpg" },
-    { id: 6, title: "Nigeria bar association join Showole on the release namdi Kano protest", desc: "This is the description for this category", img: "./imgs/naijah-men.jpg" },
-    { id: 3, title: "Aris presenter 'Oseni Rufai' clashes with the minister of work 'David Uhayi'", desc: "This is the description for this category", img: "./imgs/arise.jpg" },
-    { id: 4, title: "I can fix Nigeria under four years says Peter Obi in United States", desc: "This is the description for this category", img: "./imgs/news.jpg" },
-    { id: 5, title: "Nigerians celebrate as Nigeria qualifies for the 2026 world cup ", desc: "This is the description for this category", img: "./imgs/naijah-men.jpg" },
-    { id: 7, title: "I can fix Nigeria under four years says Peter Obi in United States", desc: "This is the description for this category", img: "./imgs/news.jpg" },
-    { id: 8, title: "Nigerians celebrate as Nigeria qualifies for the 2026 world cup ", desc: "This is the description for this category", img: "./imgs/naijah-men.jpg" },
-    { id: 9, title: "I can fix Nigeria under four years says Peter Obi in United States", desc: "This is the description for this category", img: "./imgs/news.jpg" },
-  ];
+ const trend = await fetchPosts(); 
+//  console.log(trend)
 
 const Advert = () => {
+
   return (
     <div className='mt-30'>
 
@@ -27,19 +22,14 @@ const Advert = () => {
 {/* posts */}
 
    <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 text-center p-1">
-      {posts.map((post) => (
-        <div
+      {trend.map((post) => (
+        <Link href={`details/${post.id}`}
           key={post.id}
-          className="m-2 bg-white h-90 object-cover transform transition-transform duration-500 ease-in-out hover:scale-110 hover:bg-blue-50 rounded-lg shadow-md"
+          className="m-2 bg-white h-75 object-cover transform transition-transform duration-500 ease-in-out text-gray-700 hover:scale-110 hover:bg-blue-50 rounded-lg shadow-md hover:text-blue-600"
         >
-          <img src={post.img} alt={post.title} className="w-full h-40 object-cover rounded-t-lg" />
-          <h3 className="text-lg text-gray-700 p-2 font-bold">{post.title}</h3>
-          <Link href={`/posts/${post.id}`}>
-            <button className="btn bg-blue-900 rounded-2xl btn-sm hover:bg-black text-white mt-2">
-              Read More
-            </button>
-          </Link>
-        </div>
+          <img src={post.image_url} alt={post.title} className="w-full h-40 object-cover rounded-t-lg" />
+          <h3 className="text-lg p-2 font-bold">{post.title}</h3>
+        </Link>
       ))}
     </div>
 

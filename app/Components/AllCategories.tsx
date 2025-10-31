@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { fetchPosts } from "./Allposts";
 
 const posts = [
   { id: 1, title: "ASSU set to allow some selected University to complete their Exams.", desc: "This is the description for this category", img: "/imgs/asuu.jpg" },
@@ -12,6 +13,9 @@ const posts = [
   { id: 8, title: "Nigerians celebrate as Nigeria qualifies for the 2026 world cup ", desc: "This is the description for this category", img: "/imgs/naijah-men.jpg" },
 ];
 
+const allPosts = await fetchPosts();
+console.log(allPosts)
+
 const AllCategories = () => {
   return (
     <div className="p-4">
@@ -20,11 +24,11 @@ const AllCategories = () => {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center">
-        {posts.map((post) => (
+        {allPosts.map((post) => (
           <Link href="#" key={post.id}>
-            <div className="group m-2 bg-white overflow-hidden rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-blue-50">
+            <div className="group m-2 bg-white overflow-hidden rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-blue-200">
               <img
-                src={post.img}
+                src={post.image_url}
                 alt={post.title}
                 className="w-full h-48 object-cover"
                 loading="lazy"
