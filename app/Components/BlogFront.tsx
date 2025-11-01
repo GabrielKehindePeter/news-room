@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link';
 import { supabase } from "@/app/supabaseClient";
+import PoliticsPosts from "./Politics"
+import SideBar from './SideBar';
 
 const BlogFront = async() => {
 
@@ -45,66 +47,15 @@ const BlogFront = async() => {
                 </div>
 
                 </div>
-                    <div className="flex w-full flex-col text-bl"><br />
-                        <div className="divider divider-end divider-neutral pt-10 text-2xl text-black">Politics News</div>
-                        </div>
-                          <div>
-
-<br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta natus harum doloribus odio quibusdam suscipit, eius tenetur cum officia accusamus consequatur molestiae voluptas, quisquam exercitationem. 
-<br /><br />
-                         <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-gray-800 '>
-
-                       {data.map((post)=>(
-                            <Link href={`/detail/${ post.id }}`}  key={post.id}>
-                                <div className='object-cover transform transition-transform duration-500 ease-in-out hover:scale-105  bg-blue-50 h-65 border-t-4 border-t-blue-600 m-1 mb-4' >
-
-                                    <img src={post.image_url} className='' />
-                                    
-                                        <div className='p-3 font-bold text-blue-500'>
-                                    {post.title}
-                                    </div>
-                                </div>
-                                </Link>
-                       ))}
-                       
-                    </div>
-
-
-                    </div>
-                    </div>
+                  <PoliticsPosts />
+                            </div>
 
                   
 
                 <div className='p-4 bg-gray-300 rounded-lg'>
                    
                     
-                    <div className=''>
-
-                    <div className="flex w-full flex-col text-bl">
-                    <div className="divider divider-start divider-info pt-10">Trending News</div>
-                    </div>
-                    
-                    <div className='grid sm:grid-cols-1 lg:grid-cols-1 text-gray-800 '>
-
-                       {data.map((post)=>(
-
-<Link href={`details/${post.id}`}   key={post.id}>
-                    <div className='object-cover transform transition-transform duration-500 ease-in-out hover:scale-95  bg-blue-50 rounded-xl m-1 mb-4'>
-                
-                        <img src={post.image_url} className='rounded-xl' />
-                       
-                         <div className='p-3 font-bold text-blue-500'>
-                        {post.title}
-                       </div>
-                    </div>
-                    </Link>
-
-                       ))}
-                       
-                    </div>
-                
-                </div>
+                <SideBar />
                 </div>
             </div>
         </div>

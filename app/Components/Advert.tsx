@@ -3,10 +3,13 @@ import React from 'react'
 import Link from 'next/link';
 import { fetchPosts } from "./Allposts";
 import { useState } from 'react';
+import { sport } from '../Controllers/Sport';
 
- const trend = await fetchPosts(); 
+//  const trend = await fetchPosts(); 
 //  console.log(trend)
 
+const sports = await sport();
+console.log(sports)
 const Advert = () => {
 
   return (
@@ -15,14 +18,14 @@ const Advert = () => {
 <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 p-4'>
     <div className='col-span-2 p-1 mt-10'>
       <div className="flex w-full flex-col text-bl">
-        <div className="divider divider-start divider-primary pt-10 text-2xl text-primary">Trending</div>
+        <div className="divider divider-start divider-primary pt-10 text-2xl text-primary">Sport Update</div>
     </div>
 
 
 {/* posts */}
 
    <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 text-center p-1">
-      {trend.map((post) => (
+      {sports.map((post) => (
         <Link href={`details/${post.id}`}
           key={post.id}
           className="m-2 bg-white h-75 object-cover transform transition-transform duration-500 ease-in-out text-gray-700 hover:scale-110 hover:bg-blue-50 rounded-lg shadow-md hover:text-blue-600"

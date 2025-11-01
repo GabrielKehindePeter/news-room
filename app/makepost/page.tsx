@@ -225,8 +225,12 @@ async function handleSubmit(e: React.FormEvent) {
           <select value={category} onChange={(e) => setCategory(e.target.value)} className="border-2 w-full border p-2 rounded">
             <option value=''></option>
             <option value='Politics'>Politics</option>
+            <option value='Sport'>Sport</option>
             <option value='Entertainment'>Entertainment</option>
             <option value='Business'>Business</option>
+            <option value='Trend'>Trend</option>
+            <option value='Good News'>Good News</option>
+            
           </select>
         </div>
         <div>
