@@ -11,7 +11,7 @@ const BlogFront = async() => {
                 .from('blog')
                 .select()
                 .order('id', { ascending: false })
-                .range(0, 5)
+                // .range(0, 5)
 
                 if(error){
                     console.log('an error occured: '+ error);
@@ -22,8 +22,8 @@ const BlogFront = async() => {
             <div className='grid sm:grid-cols-1 lg:grid-cols-3 sm:p-4 lg:p-8 '>
                 <div className='sm:col-span-1 lg:col-span-2 p-6 pt-2'>
                   <div>
-                     <img src="./imgs/sen.jpg" className='rounded-xl' />
-                    <h2 className='text-5xl text-gray-800 pt-4 pb-4'>Nigeria senate approves professor Joash Asumpita as new Nigeria INEC chairman</h2>
+                     <img src="https://nwcgqudzhmjezprflpdb.supabase.co/storage/v1/object/public/blog/blogs/1761961041011_kjdjk.jpg" className='rounded-xl' />
+                    <h2 className='text-5xl text-gray-800 pt-4 pb-4'>FULL LIST: Tinubu Reverses Maryam Sanda’s Pardon, Reduces Sentence To 12 Years</h2>
                     <hr className='border-2'/><br />
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati explicabo exercitationem reprehenderit? Nesciunt iste mollitia aliquam sapiente distinctio voluptatibus rerum debitis fuga eos sunt dolorem, accusantium atque! Quas, molestiae tempore?
                 </div>
@@ -37,10 +37,10 @@ const BlogFront = async() => {
 
                         <div className='grid sm:grid-cols-1 lg:grid-cols-2 '>
                         <div className='p-2'>
-                        <img src="./imgs/asuu.jpg" className='rounded-xl' />
+                        <img src="https://nwcgqudzhmjezprflpdb.supabase.co/storage/v1/object/public/blog/blogs/1761961863114_Untitled-design-2025-10-28T221411.179.png" className='rounded-xl' />
                         </div>
                          <div className='p-2 text-2xl text-gray-700'>
-                        ASSU Strike hits day 4 as federal government insist on granting their demand for resumption
+                       Shaibu, Omobayo Clash Over Who Represents Edo At Former Deputy Governors’ Forum
                         <p className='text-sm pt-6 text-primary'>Poseted: Oct. 4:19:39 PM </p>
                        </div>
 

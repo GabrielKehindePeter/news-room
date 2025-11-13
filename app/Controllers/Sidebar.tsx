@@ -1,25 +1,25 @@
-import React from 'react'
 import { supabase } from "../supabaseClient";
-import { randomInt } from 'crypto';
-export const revalidate = 0;            // disables ISR and cache
-export const dynamic = 'force-dynamic'; // forces dynamic fetch
-export const sidebar = async() => {
- 
-    
-  const { data, error } = await supabase
-    .from("blog")
-    .select()
-     .limit(6)
-    // .eq('category', 'Politics')
-    //  .order('id', random() });
 
-    
-const shuffled = data.sort(() => Math.random() - 0.5);
-  if (error) throw error;
-//   console.log(data)
-  return shuffled;
- 
-}
+// Disable ISR and caching
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
+export const sidebar = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("blog")
+      .select("*")
+      .limit(7); // limit to 7 posts
 
+    if (error) throw error;
 
+    if (!data) return [];
+
+    // Shuffle the posts randomly
+    const shuffled = data.sort(() => Math.random() - 0.5);
+    return shuffled;
+  } catch (err) {
+    console.error("Supabase fetch error:", err);
+    return [];
+  }
+};

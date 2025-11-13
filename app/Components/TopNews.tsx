@@ -7,112 +7,110 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { MoveRight, MoveLeft } from "lucide-react";
 import Link from "next/link";
-import { fetchPosts } from "./Allposts"; // ensure fetchPosts is exported and returns an array
+import { fetchPosts } from "./Allposts"; // Ensure this returns an array of posts
 
 const TopNews = () => {
-  const [posts, setPosts] = useState([]); // start as array
+  const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     let mounted = true;
-    const load = async () => {
+    const loadPosts = async () => {
       try {
         setLoading(true);
-        const data = await fetchPosts(); // fetchPosts should be async and return data (array)
+        const data = await fetchPosts();
         if (mounted) setPosts(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("fetchPosts error:", err);
+      } catch (err: any) {
+        console.error("Error fetching posts:", err);
         if (mounted) setError(err);
       } finally {
         if (mounted) setLoading(false);
       }
     };
-    load();
+    loadPosts();
     return () => {
       mounted = false;
     };
   }, []);
 
-  // fallback static slides if posts is empty (optional)
-  const staticSlides = [
-    { id: 1, title: "ASSU set to allow some selected University...", img: "/imgs/asuu.jpg" },
-    { id: 2, title: "Nigeria bar association join Showole...", img: "/imgs/naijah-men.jpg" },
-    { id: 3, title: "Aris presenter clashes with minister...", img: "/imgs/arise.jpg" },
-    { id: 4, title: "I can fix Nigeria under four years says Peter Obi...", img: "/imgs/news.jpg" },
-    { id: 5, title: "Nigerians celebrate as Nigeria qualifies for 2026...", img: "/imgs/naijah-men.jpg" },
-  ];
-
-  const slides = posts.length ? posts : staticSlides;
-
   return (
-    <div className="relative bg-blue-800 p-4 text-white h-90 rounded-b-full" id="slidepost">
-      <br />
-      <div className="flex items-center justify-between mb-4 px-4 pt-4">
+    <div className="relative bg-blue-800 p-4 text-white rounded-b-3xl">
+      <div className="flex items-center justify-between mb-4 px-4">
         <h2 className="text-xl font-semibold">Good News Report</h2>
-
-        <div className="flex items-center gap-6">
-          <button ref={prevRef} className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition" aria-label="Previous">
-            <MoveLeft />
+        <div className="flex items-center gap-4">
+          <button
+            ref={prevRef}
+            className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition"
+            aria-label="Previous"
+          >
+            &#8592;
           </button>
-          <button ref={nextRef} className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition" aria-label="Next">
-            <MoveRight />
+          <button
+            ref={nextRef}
+            className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition"
+            aria-label="Next"
+          >
+            &#8594;
           </button>
         </div>
       </div>
 
-      <div className="p-2">
-        {loading ? (
-          <div className="text-center p-6">Loading...</div>
-        ) : error ? (
-          <div className="text-center p-6">Failed to load posts.</div>
-        ) : (
-          <Swiper
-            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            spaceBetween={1}
-            slidesPerView={4}
-            autoplay={{ delay: 3500, disableOnInteraction: false }}
-            loop={true}
-            onBeforeInit={(swiper) => {
-              if (typeof swiper.params.navigation !== "boolean") {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
-              }
-            }}
-            breakpoints={{
-              0: { slidesPerView: 1 },
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-              1280: { slidesPerView: 4 },
-            }}
-            className="text-gray-200"
-          >
-            {slides.map((slider) => (
-              <SwiperSlide key={slider.id} className="p-2 rounded-lg text-blue-500">
-                <Link href="#" aria-label={slider.title}>
-                  <div className="object-cover transform transition-transform duration-500 ease-in-out hover:scale-110">
-                    <div className="bg-white pb-8 h-80 text-center rounded-t-2xl">
-                      <img src={slider.image_url} alt={slider.title} className="rounded-t-2xl w-full h-40 object-cover" />
-                      <div className="p-2">
-                        <h3 className="font-semibold mb-1 text-lg font-bold">{slider.title}</h3>
-                        <p className="text-sm">Posted on {slider.created_at}</p>
-                        {/* <div className="mt-4">
-                          <button className="btn bg-blue-900 rounded-2xl btn-sm hover:bg-black">Read More</button>
-                        </div> */}
-                      </div>
-                    </div>
+      {loading ? (
+        <div className="text-center p-6">Loading...</div>
+      ) : error ? (
+        <div className="text-center p-6">Failed to load posts.</div>
+      ) : (
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={4}
+          loop={true}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          onBeforeInit={(swiper) => {
+            // Type-safe navigation assignment
+            const nav = swiper.params.navigation as any;
+            if (nav) {
+              nav.prevEl = prevRef.current;
+              nav.nextEl = nextRef.current;
+            }
+          }}
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
+          }}
+          className="text-gray-200"
+        >
+          {posts.map((post) => (
+            <SwiperSlide key={post.id} className="p-3 border-2 border-blue-300 rounded-xl bg-blue-900/20 hover:bg-blue-900/40 transition">
+              <Link href={`details/${post.id}`}>
+                <div className="grid grid-cols-3 gap-3 items-center">
+                  <div className="relative">
+                    <span className="absolute top-1 right-1 bg-blue-600 text-white text-xs px-2 py-0.5 rounded-lg">
+                      56
+                    </span>
+                    <img
+                      src={post.image_url || post.img}
+                      alt={post.title}
+                      className="h-16 w-16 rounded-xl object-cover border border-white/20"
+                    />
                   </div>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
-      </div>
+                  <div className="col-span-2">
+                    <h3 className="text-white font-semibold text-sm mb-1">{post.title}</h3>
+                    <p className="text-gray-300 text-xs">{post.desc || post.description}</p>
+                  </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };

@@ -59,7 +59,7 @@ export default function SignInPage() {
     };
   }, [router]);
 
-  async function handlePasswordSignIn(e) {
+  async function handlePasswordSignIn(e:any) {
     e.preventDefault();
     setMsg("");
     setLoading(true);
@@ -94,7 +94,7 @@ export default function SignInPage() {
   }
 
   // Generic OAuth helper (provider: "github" | "google", etc.)
-  async function signInWithProvider(provider) {
+  async function signInWithProvider(provider:any) {
     setMsg("");
     setLoading(true);
     try {

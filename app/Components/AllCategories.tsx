@@ -1,51 +1,83 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { fetchPosts } from "./Allposts";
+import { fetchPosts } from "./Allposts"; // keep as-is if this returns a Promise of posts
 
-const posts = [
-  { id: 1, title: "ASSU set to allow some selected University to complete their Exams.", desc: "This is the description for this category", img: "/imgs/asuu.jpg" },
-  { id: 2, title: "Nigeria bar association join Showole on the release namdi Kano protest", desc: "This is the description for this category", img: "/imgs/naijah-men.jpg" },
-  { id: 6, title: "Nigeria bar association join Showole on the release namdi Kano protest", desc: "This is the description for this category", img: "/imgs/naijah-men.jpg" },
-  { id: 3, title: "Aris presenter 'Oseni Rufai' clashes with the minister of work 'David Uhayi'", desc: "This is the description for this category", img: "/imgs/arise.jpg" },
-  { id: 4, title: "I can fix Nigeria under four years says Peter Obi in United States", desc: "This is the description for this category", img: "/imgs/news.jpg" },
-  { id: 5, title: "Nigerians celebrate as Nigeria qualifies for the 2026 world cup ", desc: "This is the description for this category", img: "/imgs/naijah-men.jpg" },
-  { id: 7, title: "I can fix Nigeria under four years says Peter Obi in United States", desc: "This is the description for this category", img: "/imgs/news.jpg" },
-  { id: 8, title: "Nigerians celebrate as Nigeria qualifies for the 2026 world cup ", desc: "This is the description for this category", img: "/imgs/naijah-men.jpg" },
-];
+interface Post {
+  id: string | number;
+  title?: string;
+  image_url?: string;
+  img?: string;
+  desc?: string;
+  // add other known fields here
+}
 
-const allPosts = await fetchPosts();
-console.log(allPosts)
+const AllCategories: React.FC = () => {
+  const [allPosts, setAllPosts] = useState<Post[]>([]); // <-- typed here
+  const [rows, setRows] = useState<number>(4); // starting items to show
 
-const AllCategories = () => {
+  useEffect(() => {
+    let mounted = true;
+
+    const load = async () => {
+      try {
+        const data = await fetchPosts();
+        // only set state if mounted and data is an array
+        if (mounted && Array.isArray(data)) {
+          // Narrow to Post[] for TS safety
+          setAllPosts(data as Post[]);
+        }
+      } catch (err) {
+        console.error("error occurred:", err);
+      }
+    };
+
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  // slice posts to show only "rows" count
+  const visiblePosts = allPosts.slice(0, rows);
+
   return (
     <div className="p-4">
       <div className="w-full">
-        <h2 className="pt-6 pb-4 text-2xl font-bold text-black">Sport and Entertainment Stories</h2>
+        <h2 className="pt-6 pb-4 text-2xl font-bold text-black">
+          Sport and Entertainment Stories
+        </h2>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center">
-        {allPosts.map((post) => (
-          <Link href="#" key={post.id}>
-            <div className="group m-2 bg-white overflow-hidden rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-blue-200">
-              <img
-                src={post.image_url}
-                alt={post.title}
-                className="w-full h-48 object-cover"
-                loading="lazy"
-              />
-              <div className="p-3">
-                <h3 className="text-lg text-gray-700 font-bold">{post.title}</h3>
-                {/* optional description:
-                <p className="text-sm text-gray-500 mt-1">{post.desc}</p>
-                */}
+      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(150px,auto)]">
+        {visiblePosts.map((post, index) => {
+          const isSecond = index === 1;
+          const cardClass = `group m-2 bg-white overflow-hidden rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-blue-200 h-75 ${
+            isSecond ? "sm:col-span-1 lg:col-span-2 lg:row-span-2" : ""
+          }`;
+
+          const imgSrc = post.image_url ?? post.img ?? "/placeholder.jpg"; // fallback image
+          const title = post.title ?? "Untitled";
+
+          return (
+            <Link href="#" key={post.id ?? index}>
+              <div className={cardClass}>
+                <img src={imgSrc} alt={title} className="w-full object-cover" loading="lazy" />
+                <div className="p-3">
+                  <h3 className="text-lg text-gray-700 font-bold">{title}</h3>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
 
       <div className="text-center p-10">
-        <button className="inline-block rounded-sm bg-blue-900 rounded-xl text-white px-6 py-2 hover:bg-black transition" role="button">
+        <button
+          onClick={() => setRows((prev) => prev + 4)} // load 4 more each click
+          className="inline-block bg-blue-900 text-white px-6 py-2 rounded-xl hover:bg-black transition"
+          type="button"
+        >
           Load more
         </button>
       </div>

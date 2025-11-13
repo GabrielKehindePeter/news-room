@@ -63,12 +63,21 @@ const SliderDemo = () => {
         }}
         loop={true}
         // Custom navigation
-        onInit={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
-          swiper.navigation.init();
-          swiper.navigation.update();
-        }}
+          onInit={(swiper) => {
+        const nav = swiper.params.navigation;
+        if (nav && typeof nav !== "boolean") {
+          nav.prevEl = prevRef.current;
+          nav.nextEl = nextRef.current;
+        }
+
+  if (swiper.navigation && typeof swiper.navigation.init === "function") {
+    swiper.navigation.init();
+    if (typeof swiper.navigation.update === "function") {
+      swiper.navigation.update();
+    }
+  }
+}}
+
         breakpoints={{
           0: { slidesPerView: 1 },
           640: { slidesPerView: 2 },

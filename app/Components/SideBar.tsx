@@ -16,7 +16,7 @@ const SideBar = () => {
 
                        {randPost.map((post)=>(
 
-<Link href={`details/${post.id}`}   key={post.id}>
+                     <Link href={`details/${post.id}`}   key={post.id}>
                     <div className='object-cover transform transition-transform duration-500 ease-in-out hover:scale-95  bg-blue-50 rounded-xl m-1 mb-4'>
                 
                         <img src={post.image_url} className='rounded-xl' />

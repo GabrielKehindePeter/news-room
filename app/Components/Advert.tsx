@@ -24,17 +24,24 @@ const Advert = () => {
 
 {/* posts */}
 
-   <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 text-center p-1">
-      {sports.map((post) => (
-        <Link href={`details/${post.id}`}
-          key={post.id}
-          className="m-2 bg-white h-75 object-cover transform transition-transform duration-500 ease-in-out text-gray-700 hover:scale-110 hover:bg-blue-50 rounded-lg shadow-md hover:text-blue-600"
-        >
-          <img src={post.image_url} alt={post.title} className="w-full h-40 object-cover rounded-t-lg" />
-          <h3 className="text-lg p-2 font-bold">{post.title}</h3>
-        </Link>
-      ))}
-    </div>
+<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 text-center p-1">
+  {sports?.filter((post) => post !== null).map((post) => (
+    <Link
+      href={`details/${post.id}`}
+      key={post.id}
+      className="m-2 bg-white h-75 object-cover transform transition-transform duration-500 ease-in-out text-gray-700 hover:scale-110 hover:bg-blue-50 rounded-lg shadow-md hover:text-blue-600"
+    >
+      <img
+        src={post.image_url}
+        alt={post.title}
+        className="w-full h-40 object-cover rounded-t-lg"
+      />
+      <h3 className="text-lg p-2 font-bold">{post.title}</h3>
+    </Link>
+  )) || <p className="text-center col-span-3">No posts available</p>}
+</div>
+
+
 
 
 
